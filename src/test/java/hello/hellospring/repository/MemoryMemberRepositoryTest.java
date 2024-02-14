@@ -1,26 +1,30 @@
 package hello.hellospring.repository;
 import hello.hellospring.domain.Member;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();
-    @AfterEach
+    @AfterEach// 각각 테스트 후 실행.
     public void afterEach() {
         repository.clearStore();
-    }
+    } // 각각의 test 후에 repository 라는 내장 메모리를 clear 해준다.
     @Test
     public void save() {
-//given
+        //given
         Member member = new Member();
         member.setName("spring");
-//when
+        //when
         repository.save(member);
         //then
         Member result = repository.findByID(member.getId()).get();
-        (result).equals(member);
+        assertEquals(result,member); // 같다면 통과.
+        assertThat(member).isEqualTo(result);
     }
     @Test
     public void findByName() {
