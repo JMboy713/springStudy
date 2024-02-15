@@ -10,6 +10,13 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
+//    private final MemberRepository memberRepository;
+//
+//
+//    public SpringConfig(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+
     private EntityManager em;
     @Autowired
     public SpringConfig(EntityManager em) {
